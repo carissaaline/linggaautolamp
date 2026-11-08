@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0b">
+<title>Lingga Auto Lamp · Lampu Custom Bus & Truck, Malang</title>
+<meta name="description" content="Bengkel lampu custom bus dan truck di Malang. Videotron, rotator, tail lamp, RGB kabin, biled, lampu kolong. Bisa pasang di tempat atau kirim ke seluruh Indonesia.">
+<meta property="og:title" content="Lingga Auto Lamp">
+<meta property="og:description" content="Lampu custom bus & truck dari Malang.">
+<meta property="og:image" content="img/hero.jpg">
+<link rel="icon" href="logo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0a0b;--bg-2:#111113;--ink:#efeee9;--ink-2:#a9a8a2;--ink-3:#66655f;
+    --line:rgba(255,255,255,.08);--red:#e5262f;--beam:#e5262f;
+    --serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+    --ease:cubic-bezier(.2,.8,.2,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;color:inherit}
+  img{display:block}
+  ::selection{background:var(--red);color:#fff}
+  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:200;opacity:.06;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .wrap{width:min(1180px,100% - 40px);margin-inline:auto}
+  .mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  .label{display:flex;gap:12px;align-items:center}
+  .label b{color:var(--red);font-weight:600}
+
+  /* text animation */
+  .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .07em .1em;margin:0 -.07em -.1em}
+  .w>span{display:inline-block;transform:translateY(110%) rotate(4deg);transform-origin:left bottom;transition:transform 1.1s var(--ease);transition-delay:calc(var(--i)*55ms)}
+  .in .w>span{transform:none}
+  h1 em,h2 em{font-style:italic;color:var(--red)}
+  .in em{animation:flick 1.6s calc(var(--d,0)*1ms + .45s) both}
+  @keyframes flick{0%{opacity:.08;text-shadow:none}6%{opacity:1}9%{opacity:.15}13%{opacity:1}16%{opacity:.35}20%{opacity:1}24%{opacity:.6}30%,100%{opacity:1;text-shadow:0 0 30px rgba(229,38,47,.5)}}
+  .rv{opacity:0;transform:translateY(30px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease)}
+  .rv.in{opacity:1;transform:none}
+
+  /* nav */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+  nav.menu-open{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:transparent!important;border-color:transparent!important}
+  nav.scrolled{background:rgba(10,10,11,.7);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px);border-color:var(--line)}
+  .nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:68px}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:500;font-size:15px;position:relative;z-index:2;justify-self:start;grid-column:1;white-space:nowrap}
+  .nav-in .pill,.burger{grid-column:3;grid-row:1;justify-self:end}
+  .brand-logo{width:32px;height:32px;border-radius:50%;overflow:hidden;background:#000;border:1px solid var(--line);display:grid;place-items:center;font-family:var(--serif);color:var(--red)}
+  .brand-logo img{width:100%;height:100%;object-fit:cover}
+  .menu{grid-column:2;display:flex;gap:2px;padding:5px;font-size:13.5px;color:var(--ink-2);background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:999px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  .menu a{position:relative;padding:8px 16px;border-radius:999px;white-space:nowrap;transition:color .25s,background .25s}
+  .menu a:hover{color:var(--ink);background:rgba(255,255,255,.05)}
+  .menu a.active{color:var(--ink);background:rgba(255,255,255,.09)}
+  .menu a.active::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);margin-right:8px;vertical-align:middle;transform:translateY(-1px)}
+  .menu-foot{display:none}
+  .pill{font-size:14px;font-weight:500;padding:10px 20px;border-radius:999px;border:1px solid rgba(255,255,255,.2);transition:background .25s,color .25s}
+  .pill:hover{background:var(--ink);color:#000}
+  .burger{display:none;background:none;border:0;width:40px;height:40px;cursor:pointer;position:relative;z-index:2}
+  .burger span{display:block;height:1.5px;width:22px;background:var(--ink);margin:6px auto;transition:.4s var(--ease)}
+  .burger.x span:nth-child(1){transform:translateY(3.75px) rotate(45deg)}
+  .burger.x span:nth-child(2){transform:translateY(-3.75px) rotate(-45deg)}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:var(--ink);color:#0a0a0b;font-weight:500;font-size:15px;padding:16px 28px;border-radius:999px;border:0;cursor:pointer;transition:background .3s,color .3s,box-shadow .3s,transform .4s var(--ease)}
+  .btn:hover{background:var(--red);color:#fff;box-shadow:0 12px 40px rgba(229,38,47,.35)}
+  .btn .arrow{transition:transform .3s}
+  .btn:hover .arrow{transform:translateX(4px)}
+  .btn.wa{background:#25d366;color:#04140a}
+  .btn.wa:hover{background:#fff;color:#000;box-shadow:none}
+  .tlink{font-size:15px;color:var(--ink-2);border-bottom:1px solid rgba(255,255,255,.18);padding-bottom:3px;transition:.25s}
+  .tlink:hover{color:var(--ink);border-color:var(--ink)}
+
+  /* hero */
+  .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 0 34px;overflow:hidden}
+  .hero-media{position:absolute;inset:0;z-index:0}
+  .hero-img{position:absolute;inset:-6% 0 0;width:100%;height:106%;object-fit:cover;opacity:.5;filter:saturate(.85) contrast(1.05);will-change:transform}
+  .hero-media::before{content:"";position:absolute;width:900px;height:900px;right:-260px;top:10%;border-radius:50%;background:radial-gradient(circle,rgba(229,38,47,.2),transparent 62%);animation:breathe 7s ease-in-out infinite}
+  .hero-media::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(10,10,11,.55) 0%,transparent 30%,rgba(10,10,11,.4) 60%,var(--bg) 100%),linear-gradient(90deg,rgba(10,10,11,.75),transparent 70%)}
+  @keyframes breathe{50%{opacity:.55;transform:scale(1.06)}}
+  .hero-in{position:relative;z-index:2;will-change:opacity,transform}
+  .hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:40px;align-items:center}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(48px,7.2vw,112px);line-height:.92;letter-spacing:-.025em;margin:22px 0 30px}
+  .hero-p{color:var(--ink-2);font-size:17px;font-weight:300;max-width:480px}
+  .hero-actions{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin-top:28px}
+
+  /* logo seal + light trails */
+  .hero-visual{position:relative;height:440px;display:grid;place-items:center;transform:translate(var(--tx,0),var(--ty,0));transition:transform .6s var(--ease)}
+  .trails{position:absolute;top:22%;bottom:22%;left:-60%;right:-30%;overflow:hidden;pointer-events:none;mix-blend-mode:screen;
+    -webkit-mask:linear-gradient(90deg,transparent,#000 25%,#000 75%,transparent);mask:linear-gradient(90deg,transparent,#000 25%,#000 75%,transparent);transition:filter .4s}
+  .trails span{position:absolute;left:0;width:28%;height:2px;border-radius:2px}
+  .trails .r{background:linear-gradient(90deg,transparent,rgba(255,45,55,.95));box-shadow:0 0 14px rgba(255,40,50,.8);animation:trR var(--d) linear var(--dl) infinite}
+  .trails .h{background:linear-gradient(90deg,rgba(235,244,255,.95),transparent);box-shadow:0 0 14px rgba(220,235,255,.7);animation:trH var(--d) linear var(--dl) infinite}
+  @keyframes trR{from{transform:translateX(-110%)}to{transform:translateX(370%)}}
+  @keyframes trH{from{transform:translateX(370%)}to{transform:translateX(-110%)}}
+  .trails.boost{filter:brightness(1.8) saturate(1.3)}
+  .seal{position:relative;width:280px;height:280px;border:0;background:none;padding:0;cursor:pointer;border-radius:50%;z-index:1;transition:transform .3s var(--ease)}
+  .seal:active{transform:scale(.95)}
+  .seal svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 22s linear infinite}
+  .seal.flash svg{animation-duration:3s}
+  .seal text{font-family:var(--mono);font-size:11.5px;fill:var(--ink-2);letter-spacing:2px}
+  .seal-logo{position:absolute;inset:16%;border-radius:50%;overflow:hidden;background:#000;display:grid;place-items:center;box-shadow:0 0 0 1px var(--line),0 24px 70px rgba(229,38,47,.32);transition:box-shadow .5s}
+  .seal-logo img{width:100%;height:100%;object-fit:cover}
+  .seal-logo b{font-family:var(--serif);font-style:italic;font-weight:400;font-size:84px;color:var(--red)}
+  .seal-logo::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.18) 50%,transparent 60%);background-size:260% 100%;animation:sheen 6s ease-in-out infinite}
+  @keyframes sheen{0%{background-position:160% 0}45%,100%{background-position:-60% 0}}
+  .seal .ring{position:absolute;inset:16%;border-radius:50%;border:1px solid rgba(229,38,47,.6);animation:ping 3.2s var(--ease) infinite;pointer-events:none}
+  @keyframes ping{0%{transform:scale(1);opacity:.8}70%,100%{transform:scale(1.45);opacity:0}}
+  .seal.flash .seal-logo{animation:burst 1s var(--ease)}
+  @keyframes burst{0%{box-shadow:0 0 0 1px var(--line),0 0 0 rgba(229,38,47,0)}25%{box-shadow:0 0 0 2px #ff4048,0 0 120px 30px rgba(229,38,47,.75)}100%{box-shadow:0 0 0 1px var(--line),0 24px 70px rgba(229,38,47,.32)}}
+  .tap-hint{position:absolute;bottom:6%;left:50%;transform:translateX(-50%);display:flex;gap:8px;align-items:center;transition:opacity .4s;white-space:nowrap}
+  .tap-hint::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--red);animation:blinkdot 1.4s steps(2) infinite}
+  @keyframes blinkdot{50%{opacity:.2}}
+  .tap-hint.gone{opacity:0}
+  .hero-flash{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle at var(--fx,70%) var(--fy,50%),rgba(229,38,47,.35),transparent 55%);opacity:0}
+  .hero-flash.on{animation:hf 1s var(--ease)}
+  @keyframes hf{20%{opacity:1}100%{opacity:0}}
+
+  /* tap ripple */
+  .btn,.chip,.preset,.seg button{position:relative;overflow:hidden}
+  .rip{position:absolute;border-radius:50%;pointer-events:none;background:rgba(255,255,255,.35);transform:scale(0);animation:rip .6s var(--ease) forwards}
+  @keyframes rip{to{transform:scale(1);opacity:0}}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .hero-foot{display:flex;justify-content:space-between;gap:20px;margin-top:56px;padding-top:18px;border-top:1px solid var(--line);flex-wrap:wrap}
+  .scroll-cue{display:flex;align-items:center;gap:10px}
+  .scroll-cue i{width:1px;height:26px;background:linear-gradient(var(--ink),transparent);animation:cue 2s var(--ease) infinite}
+  @keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* marquee */
+  .marq{border-block:1px solid var(--line);overflow:hidden;padding:22px 0}
+  .marq-track{display:flex;width:max-content;animation:mq 40s linear infinite}
+  .marq-track span{font-family:var(--serif);font-size:clamp(36px,5.5vw,70px);line-height:1;padding:0 28px;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.22)}
+  .marq-track span:nth-child(even){color:var(--ink);-webkit-text-stroke:0;font-style:italic}
+  .marq-track span::after{content:"✳";font-style:normal;color:var(--red);-webkit-text-stroke:0;font-size:.4em;vertical-align:middle;margin-left:56px}
+  @keyframes mq{to{transform:translateX(-50%)}}
+
+  /* sections */
+  .sec{padding:130px 0;position:relative}
+  .head{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end;margin-bottom:60px}
+  h2{font-family:var(--serif);font-weight:400;font-size:clamp(42px,6.4vw,88px);line-height:.95;letter-spacing:-.02em;margin-top:18px}
+  .head p{color:var(--ink-2);font-weight:300;max-width:400px;justify-self:end}
+
+  /* statement */
+  .statement{padding:150px 0 130px}
+  .statement p{font-family:var(--serif);font-size:clamp(32px,5vw,68px);line-height:1.1;letter-spacing:-.015em;max-width:1050px}
+  .statement .sw{color:rgba(255,255,255,.14);transition:color .4s}
+  .statement .sw.on{color:var(--ink)}
+  .statement em{font-style:italic}
+  .statement em .sw.on{color:var(--red);text-shadow:0 0 30px rgba(229,38,47,.4)}
+
+  /* art fallbacks */
+  .art{position:absolute;inset:0}
+  .a1{background:radial-gradient(ellipse at 50% 55%,rgba(229,38,47,.35),transparent 60%),#070203}
+  .a1 .vt{position:absolute;left:10%;right:10%;top:41%;height:18%;border-radius:6px;background:#050505;border:1px solid rgba(255,255,255,.06);overflow:hidden;display:flex;align-items:center}
+  .a1 .vt span{white-space:nowrap;font-family:var(--mono);font-weight:600;font-size:clamp(18px,2.6vw,30px);letter-spacing:.2em;color:#ff4048;text-shadow:0 0 12px #e5262f;animation:scr 9s linear infinite}
+  .a1 .vt::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,#050505 0 1px,transparent 1px 4px),repeating-linear-gradient(0deg,#050505 0 1px,transparent 1px 4px)}
+  @keyframes scr{from{transform:translateX(100%)}to{transform:translateX(-100%)}}
+  .a2{background:radial-gradient(circle at 50% 50%,#ff9a1f 0 5%,transparent 6%),conic-gradient(from 0deg at 50% 50%,rgba(255,154,31,.55),transparent 16%,transparent 50%,rgba(255,154,31,.55) 66%,transparent 82%),#0a0603;animation:spin 2.2s linear infinite}
+  .a3{background:linear-gradient(90deg,transparent 10%,#e5262f 10% 28%,transparent 28% 72%,#e5262f 72% 90%,transparent 90%) center 52%/100% 10% no-repeat,radial-gradient(ellipse at 19% 52%,rgba(229,38,47,.55),transparent 25%),radial-gradient(ellipse at 81% 52%,rgba(229,38,47,.55),transparent 25%),#090304}
+  .a4{background:linear-gradient(120deg,#ff3a6a,#ff9a3c,#ffe86a,#5effa0,#4ad8ff,#8a5cff,#ff5cd6) 0 0/400% 400%;animation:flow 12s linear infinite;opacity:.5}
+  .a4::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.2),rgba(0,0,0,.7))}
+  @keyframes flow{to{background-position:400% 0}}
+  .a5{background:linear-gradient(180deg,#0b0b0d 0 58%,transparent 58%),radial-gradient(ellipse 60% 40% at 50% 68%,rgba(63,224,255,.8),rgba(123,45,255,.35) 45%,transparent 70%),#050008;animation:hue 4s ease-in-out infinite}
+  @keyframes hue{50%{filter:hue-rotate(50deg)}}
+  .a6{background:radial-gradient(circle at 30% 50%,#fff 0 4%,#cfe6ff 5%,transparent 10%),radial-gradient(circle at 70% 50%,#fff 0 4%,#cfe6ff 5%,transparent 10%),radial-gradient(ellipse 70% 30% at 50% 50%,rgba(200,225,255,.22),transparent 70%),#04060a}
+  .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+
+  /* services explorer */
+  .xp{display:grid;grid-template-columns:.85fr 1.15fr;gap:50px;align-items:start}
+  .xp-list{border-top:1px solid var(--line)}
+  .xp-item{width:100%;display:grid;grid-template-columns:42px 1fr 18px;gap:14px;align-items:center;padding:20px 0;background:none;border:0;border-bottom:1px solid var(--line);color:var(--ink-3);text-align:left;cursor:pointer;position:relative;transition:color .35s}
+  .xp-item .n{font-family:var(--mono);font-size:11px}
+  .xp-item h3{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.2vw,42px);line-height:1;transition:transform .5s var(--ease)}
+  .xp-item .dot{width:8px;height:8px;border-radius:50%;background:var(--c);opacity:.25;transition:.35s;justify-self:end}
+  .xp-item::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--c);box-shadow:0 0 12px var(--c);transform:scaleX(0);transform-origin:left;transition:transform .7s var(--ease)}
+  .xp-item:hover,.xp-item.active{color:var(--ink)}
+  .xp-item.active h3{font-style:italic;transform:translateX(12px)}
+  .xp-item.active .dot{opacity:1;box-shadow:0 0 14px var(--c),0 0 30px var(--c)}
+  .xp-item.active::after{transform:scaleX(1)}
+  .xp-panel{position:sticky;top:100px;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:var(--bg-2)}
+  .xp-vis{position:relative;aspect-ratio:16/10;overflow:hidden;background:#000}
+  .xp-vis .art,.xp-vis .photo{animation:zoomIn 1.2s var(--ease) both}
+  @keyframes zoomIn{from{transform:scale(1.12);opacity:0}}
+  .xp-vis::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(transparent 55%,rgba(17,17,19,.95))}
+  .xp-vis .tag{position:absolute;left:20px;bottom:16px;z-index:3;font-family:var(--serif);font-size:34px;line-height:1}
+  .xp-vis .tag small{display:block;font-family:var(--mono);font-size:11px;color:var(--c);letter-spacing:.1em;margin-bottom:6px}
+  .xp-vis .count{position:absolute;right:18px;top:16px;z-index:3;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.7)}
+  .xp-body{padding:8px 26px 26px}
+  .xp-body .lead{font-size:16px;color:var(--ink-2);font-weight:300}
+  .xp-rows{margin-top:18px;border-top:1px solid var(--line)}
+  .xp-rows div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+  .xp-rows small{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);padding-top:3px}
+  .xp-rows span{font-weight:300}
+  .xp-cta{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:22px;flex-wrap:wrap}
+  .fade>*{animation:up .6s var(--ease) both}
+  .fade>*:nth-child(2){animation-delay:.07s}.fade>*:nth-child(3){animation-delay:.14s}
+  @keyframes up{from{opacity:0;transform:translateY(10px)}}
+  .swipe-hint{display:none}
+
+  /* studio */
+  .lab{display:grid;grid-template-columns:1.4fr .6fr;border:1px solid var(--line);border-radius:24px;background:var(--bg-2)}
+  .stage{position:relative;min-height:470px;border-radius:24px 0 0 24px;overflow:hidden;
+    background:radial-gradient(ellipse at 50% 115%,color-mix(in srgb,var(--beam) 32%,transparent),transparent 60%),linear-gradient(180deg,#060607,#0f0f11)}
+  .stage svg{position:absolute;inset:0;width:100%;height:100%}
+  .road{position:absolute;left:0;right:0;bottom:0;height:22%;border-top:1px solid var(--line);
+    background:repeating-linear-gradient(90deg,transparent 0 70px,rgba(255,255,255,.09) 70px 120px) center 50%/100% 2px no-repeat;animation:road 1.2s linear infinite}
+  @keyframes road{to{background-position:-120px 50%}}
+  .stage-tag{position:absolute;left:20px;top:18px;z-index:2}
+  .stage-tag b{color:var(--ink);font-weight:600}
+  .veh{position:absolute;right:16px;top:12px;z-index:2;width:150px}
+  .ctrl{padding:28px 26px;border-left:1px solid var(--line);display:flex;flex-direction:column}
+  .ctrl .lbl{margin:22px 0 10px}
+  .ctrl .lbl:first-child{margin-top:0}
+  .presets{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .preset{background:#0c0c0d;border:1px solid var(--line);border-radius:12px;padding:10px 12px;text-align:left;cursor:pointer;transition:.3s}
+  .preset b{display:block;font-weight:500;font-size:13.5px}
+  .preset span{font-size:11.5px;color:var(--ink-3)}
+  .preset:hover,.preset.active{border-color:var(--beam);background:color-mix(in srgb,var(--beam) 10%,#0c0c0d)}
+  .swatches{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;align-items:center;justify-items:center}
+  .sw-c{width:100%;max-width:30px;aspect-ratio:1;height:auto;border-radius:50%;cursor:pointer;position:relative;transition:transform .25s;border:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}
+  .sw-c::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid transparent;transition:.25s}
+  .sw-c.active::after{border-color:rgba(255,255,255,.8)}
+  .sw-c:active{transform:scale(.9)}
+  .seg{display:grid;grid-template-columns:repeat(4,1fr);background:#0a0a0b;border:1px solid var(--line);border-radius:999px;padding:4px}
+  .seg.two{grid-template-columns:1fr 1fr}.seg.three{grid-template-columns:repeat(3,1fr)}
+  .seg button{background:none;border:0;color:var(--ink-2);font:500 12.5px var(--sans);padding:8px 6px;border-radius:999px;cursor:pointer;transition:.25s}
+  .seg button.active{background:var(--ink);color:#000}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--ink-2);font:500 12.5px var(--sans);padding:7px 12px;border-radius:999px;cursor:pointer;transition:.25s}
+  .chip.on{border-color:var(--beam);color:var(--ink);background:color-mix(in srgb,var(--beam) 15%,transparent)}
+  .chip:active{transform:scale(.95)}
+  .field{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.2);color:var(--ink);padding:8px 0;font:400 21px var(--serif);outline:none;border-radius:0;transition:.25s}
+  .field:focus{border-color:var(--beam)}
+  textarea.field{font:300 15px var(--sans);resize:vertical;min-height:70px}
+  input[type=range]{width:100%;accent-color:var(--beam)}
+  .ctrl .go{margin-top:26px;display:flex;flex-direction:column;gap:10px}
+
+  /* compare */
+  .ba{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line);aspect-ratio:2/1;background:#07070a;user-select:none;-webkit-user-select:none;touch-action:pan-y;cursor:ew-resize}
+  .ba svg{position:absolute;inset:0;width:100%;height:100%}
+  .ba .after{clip-path:inset(0 0 0 var(--p,50%))}
+  .ba .handle{position:absolute;top:0;bottom:0;left:var(--p,50%);width:1px;background:rgba(255,255,255,.8);box-shadow:0 0 16px rgba(255,255,255,.5);outline:none}
+  .ba .handle::after{content:"";position:absolute;top:50%;left:50%;width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:rgba(10,10,11,.6) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='1.5'%3E%3Cpath d='M9 6l-6 6 6 6M15 6l6 6-6 6'/%3E%3C/svg%3E") center/20px no-repeat;border:1px solid rgba(255,255,255,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:transform .3s}
+  .ba.drag .handle::after{transform:scale(1.15)}
+  .ba .tagL,.ba .tagR{position:absolute;top:16px;padding:6px 12px;border-radius:999px;background:rgba(0,0,0,.55);border:1px solid var(--line);pointer-events:none;z-index:2}
+  .ba .tagL{left:16px}.ba .tagR{right:16px;color:#fff;border-color:color-mix(in srgb,var(--beam) 60%,transparent)}
+  .recap{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:22px;padding:18px 22px;border:1px solid var(--line);border-radius:18px;flex-wrap:wrap}
+  .recap p{font-size:15px;color:var(--ink-2);font-weight:300}
+  .recap p b{color:var(--ink);font-weight:500}
+  .recap .acts{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+
+  /* gallery */
+  .gal{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:120px;gap:14px}
+  .tile{position:relative;border-radius:18px;overflow:hidden;background:#000;border:1px solid var(--line)}
+  .tile .art,.tile .photo{transition:transform 1.4s var(--ease)}
+  .tile:hover .art,.tile:hover .photo{transform:scale(1.06)}
+  .tile::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(transparent 45%,rgba(0,0,0,.75));pointer-events:none}
+  .tile figcaption{position:absolute;left:18px;bottom:16px;right:18px;z-index:3;display:flex;justify-content:space-between;align-items:end}
+  .tile figcaption b{font-family:var(--serif);font-weight:400;font-size:26px;display:block;line-height:1.1}
+  .tile .ilu{display:none;position:absolute;top:14px;left:14px;z-index:3;padding:4px 9px;border-radius:999px;background:rgba(0,0,0,.5)}
+  .tile.no-photo .ilu{display:block}
+  .t1{grid-column:1/8;grid-row:span 4}.t2,.t3{grid-column:8/13;grid-row:span 2}.t4{grid-column:1/5;grid-row:span 3}.t5{grid-column:5/13;grid-row:span 3}
+  .gal-foot{display:flex;justify-content:space-between;align-items:center;margin-top:26px;gap:20px;flex-wrap:wrap}
+
+  /* order */
+  .order{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .phone{width:100%;max-width:360px;justify-self:center;background:#0b141a;border-radius:40px;padding:12px;
+    box-shadow:0 0 0 1px rgba(255,255,255,.1),0 0 0 9px #161618,0 0 0 10px rgba(255,255,255,.08),0 50px 100px rgba(0,0,0,.6);transform:perspective(1200px) rotateY(10deg) rotateX(3deg);transition:transform 1s var(--ease)}
+  .phone:hover{transform:none}
+  .phone-in{border-radius:30px;overflow:hidden}
+  .ph-top{display:flex;align-items:center;gap:11px;padding:14px 16px;background:#1f2c33}
+  .ph-top .av{width:36px;height:36px;border-radius:50%;background:#000;overflow:hidden;display:grid;place-items:center;font-family:var(--serif);color:var(--red)}
+  .ph-top .av img{width:100%;height:100%;object-fit:cover}
+  .ph-top b{font-size:15px;font-weight:500;display:block;line-height:1.2}
+  .ph-top small{font-size:12px;color:#8696a0}
+  .chat{padding:18px 14px 20px;min-height:360px;background:#0b141a}
+  .day{text-align:center;margin-bottom:14px}
+  .day span{font-size:11px;background:#182229;color:#8696a0;padding:4px 10px;border-radius:6px}
+  .bub{max-width:82%;padding:7px 10px 6px;border-radius:9px;font-size:14px;margin-bottom:6px;line-height:1.45;opacity:0;transform:translateY(8px) scale(.97);transition:.5s var(--ease)}
+  .bub.show{opacity:1;transform:none}
+  .me{background:#005c4b;margin-left:auto;border-top-right-radius:2px}
+  .them{background:#202c33;border-top-left-radius:2px}
+  .bub time{float:right;font-size:10.5px;color:rgba(255,255,255,.55);margin:6px 0 -2px 10px}
+  .me time::after{content:" ✓✓";color:#53bdeb}
+  .typing{display:inline-flex;gap:4px;background:#202c33;padding:11px 13px;border-radius:9px;opacity:0;transition:.3s}
+  .typing.show{opacity:1}
+  .typing i{width:6px;height:6px;border-radius:50%;background:#8696a0;animation:ty 1.1s infinite}
+  .typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+  @keyframes ty{50%{transform:translateY(-3px);opacity:.4}}
+  .steps{margin-top:36px;border-top:1px solid var(--line)}
+  .step{display:grid;grid-template-columns:56px 1fr;padding:20px 0;border-bottom:1px solid var(--line)}
+  .step .n{font-family:var(--serif);font-style:italic;font-size:24px;color:var(--red);line-height:1.2}
+  .step b{font-weight:500;font-size:16.5px;display:block}
+  .step span{color:var(--ink-2);font-weight:300;font-size:15px}
+
+  /* faq */
+  .faq{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px}
+  .faq .side p{color:var(--ink-2);font-weight:300;margin-top:22px;max-width:320px}
+  details{border-bottom:1px solid var(--line)}
+  details:first-child{border-top:1px solid var(--line)}
+  summary{list-style:none;cursor:pointer;padding:22px 0;font-size:17px;display:flex;justify-content:space-between;gap:20px;align-items:center}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"";width:12px;height:12px;flex:none;background:linear-gradient(var(--ink-2),var(--ink-2)) center/100% 1px no-repeat,linear-gradient(var(--ink-2),var(--ink-2)) center/1px 100% no-repeat;transition:transform .4s var(--ease)}
+  details[open] summary::after{transform:rotate(135deg)}
+  details p{padding:0 40px 22px 0;color:var(--ink-2);font-weight:300}
+  details[open] p{animation:up .5s var(--ease)}
+
+  /* closing */
+  .closing{padding:150px 0 100px;position:relative;overflow:hidden}
+  .closing-bg{position:absolute;inset:0;z-index:0}
+  .closing-bg img{width:100%;height:100%;object-fit:cover;opacity:.25}
+  .closing-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(var(--bg),rgba(10,10,11,.5) 40%,var(--bg)),radial-gradient(ellipse 60% 50% at 50% 100%,rgba(229,38,47,.25),transparent)}
+  .closing .wrap{position:relative;z-index:1}
+  .closing-head{text-align:center}
+  .closing h2{font-size:clamp(60px,11vw,160px)}
+  .closing-head p{color:var(--ink-2);margin:22px auto 0;max-width:440px;font-weight:300}
+  .builder{margin-top:60px;display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:24px;overflow:hidden;background:rgba(17,17,19,.75);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+  .builder .form{padding:30px}
+  .builder .form .lbl{margin:20px 0 10px}
+  .builder .form .lbl:first-child{margin-top:0}
+  .builder .preview{padding:30px;border-left:1px solid var(--line);display:flex;flex-direction:column;background:#0b141a}
+  .msg{margin:14px 0 24px;background:#005c4b;border-radius:10px;border-top-right-radius:2px;padding:12px 14px;font-size:14px;line-height:1.55;white-space:pre-wrap;align-self:flex-end;max-width:100%}
+  .builder .preview .btn{margin-top:auto}
+  .contact{display:grid;grid-template-columns:repeat(3,1fr);margin-top:90px;border-top:1px solid var(--line)}
+  .contact div{padding-top:22px}
+  .contact a,.contact span{display:block;margin-top:6px;font-size:16px}
+  .contact a:hover{color:var(--red)}
+  footer{border-top:1px solid var(--line);padding:26px 0 calc(26px + env(safe-area-inset-bottom))}
+  .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  .float-wa{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom));z-index:55;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:rgba(20,20,22,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);transition:.3s;transform:translateY(90px)}
+  .float-wa.show{transform:none}
+  .float-wa:hover{background:#25d366;border-color:#25d366}
+  .float-wa svg{width:24px;height:24px;fill:#fff}
+
+  /* ---------- tablet / mobile ---------- */
+  @media (max-width:920px){
+    .head,.xp,.lab,.order,.faq,.builder{grid-template-columns:1fr}
+    .head p{justify-self:start}
+    .hero-sub{grid-template-columns:1fr}
+    .hero{padding-top:84px}
+    .hero-grid{grid-template-columns:1fr;gap:0}
+    .hero-visual{order:-1;height:250px;margin:0 -20px 26px}
+    .trails{left:0;right:0;top:12%;bottom:12%}
+    .seal{width:210px;height:210px}
+    .seal-logo b{font-size:64px}
+    .tap-hint{bottom:-12px}
+    h1{margin:18px 0 22px}
+    .hero-foot{margin-top:40px}
+    .xp-panel{position:relative;top:0;order:2}
+    .xp-list{display:flex;overflow-x:auto;gap:8px;border:0;padding:2px 0 8px;scrollbar-width:none;scroll-snap-type:x mandatory;margin-right:-20px;padding-right:20px}
+    .xp-list::-webkit-scrollbar{display:none}
+    .xp-item{display:flex;width:auto;flex:none;border:1px solid var(--line);border-radius:999px;padding:9px 16px;gap:8px;scroll-snap-align:start}
+    .xp-item h3{font-family:var(--sans);font-size:14px;font-weight:500}
+    .xp-item.active h3{transform:none;font-style:normal}
+    .xp-item .dot,.xp-item::after{display:none}
+    .xp-item.active{border-color:var(--c);background:color-mix(in srgb,var(--c) 15%,transparent)}
+    .xp-vis{touch-action:pan-y}
+    .swipe-hint{display:block;margin-top:12px;text-align:center}
+    .stage{position:sticky;top:68px;z-index:5;min-height:0;height:min(56vw,330px);border-radius:24px 24px 0 0;box-shadow:0 18px 30px rgba(0,0,0,.45)}
+    .ctrl{border-left:0;border-top:1px solid var(--line)}
+    .builder .preview{border-left:0;border-top:1px solid var(--line)}
+    .ba{aspect-ratio:5/3}
+    .gal{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-right:-20px;padding-right:20px;scrollbar-width:none}
+    .gal::-webkit-scrollbar{display:none}
+    .tile{flex:0 0 78%;height:380px;scroll-snap-align:start}
+    .phone{transform:none}
+    .contact{grid-template-columns:1fr}
+    .sec{padding:100px 0}
+    .order{gap:60px}
+  }
+  @media (max-width:1000px){
+    .nav-in{grid-template-columns:1fr auto}
+    .nav-in .pill,.burger{grid-column:2}
+    .menu{position:fixed;inset:0;z-index:1;flex-direction:column;justify-content:center;align-items:stretch;gap:0;padding:90px 24px 40px;border:0;border-radius:0;background:rgba(10,10,11,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);opacity:0;pointer-events:none;transition:opacity .45s}
+    .menu a{display:flex;justify-content:space-between;align-items:baseline;padding:14px 4px;border-radius:0;border-bottom:1px solid var(--line);font-family:var(--serif);font-size:clamp(38px,9vw,56px);line-height:1.1;color:var(--ink);opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease),color .25s;transition-delay:calc(var(--i)*60ms)}
+    .menu a::after{content:attr(data-n);font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.08em}
+    .menu a:hover,.menu a.active{background:none}
+    .menu a.active{color:var(--red);font-style:italic}
+    .menu a.active::before{display:none}
+    .menu.open{opacity:1;pointer-events:auto}
+    .menu.open a{opacity:1;transform:none}
+    .menu-foot{display:flex;justify-content:space-between;gap:12px;margin-top:28px;opacity:0;transition:opacity .6s .35s}
+    .menu.open .menu-foot{opacity:1}
+    .menu-foot a{all:unset;cursor:pointer;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+    .burger{display:block}
+    .nav-in .pill{display:none}
+  }
+  @media (max-width:720px){
+    .hero-foot .hide-m{display:none}
+    .xp-body{padding:6px 20px 22px}
+    .xp-rows div{grid-template-columns:1fr;gap:2px}
+    .ctrl,.builder .form,.builder .preview{padding:24px 20px}
+    .recap{padding:16px}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.w>span{opacity:1!important;transform:none!important}}
+</style>
+</head>
+<body>
+
+<!-- shared SVG defs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2a2f"/><stop offset=".55" stop-color="#151518"/><stop offset="1" stop-color="#0a0a0b"/></linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1f28"/><stop offset="1" stop-color="#07080b"/></linearGradient>
+    <linearGradient id="hb" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#eaf3ff" stop-opacity=".55"/><stop offset="1" stop-color="#eaf3ff" stop-opacity="0"/></linearGradient>
+    <filter id="gl" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <radialGradient id="ug" cx=".5" cy=".5" r=".5"><stop offset="0" class="beamStop" stop-color="#e5262f" stop-opacity=".9"/><stop offset="1" class="beamStop" stop-color="#e5262f" stop-opacity="0"/></radialGradient>
+    <radialGradient id="amb" cx=".5" cy="1" r=".7"><stop offset="0" class="beamStop" stop-color="#e5262f" stop-opacity=".35"/><stop offset="1" class="beamStop" stop-color="#e5262f" stop-opacity="0"/></radialGradient>
+    <pattern id="ledgrid" width="3" height="3" patternUnits="userSpaceOnUse"><path d="M0 0H3M0 0V3" stroke="#040405" stroke-width="1.1"/></pattern>
+    <clipPath id="clipB"><rect x="170" y="160" width="460" height="36"/></clipPath>
+    <clipPath id="clipT"><rect x="150" y="150" width="320" height="40"/></clipPath>
+  </defs>
+</svg>
+
+<nav id="nav">
+  <div class="wrap nav-in">
+    <a href="#" class="brand"><span class="brand-logo"><img src="logo.jpeg" alt="" onerror="this.outerHTML='L'"></span>Lingga Auto Lamp</a>
+    <div class="menu" id="menu">
+      <a href="#layanan" style="--i:0" data-n="01">Layanan</a>
+      <a href="#studio" style="--i:1" data-n="02">Studio Cahaya</a>
+      <a href="#karya" style="--i:2" data-n="03">Karya</a>
+      <a href="#order" style="--i:3" data-n="04">Cara Order</a>
+      <a href="#faq" style="--i:4" data-n="05">FAQ</a>
+      <div class="menu-foot"><a href="https://wa.me/62895636053643" target="_blank">WhatsApp ↗</a><a href="https://instagram.com/linggaautolamp" target="_blank">Instagram ↗</a></div>
+    </div>
+    <a href="#rakit" class="pill">Chat kami</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <div class="hero-media">
+    <img class="hero-img" id="heroImg" src="img/hero.jpg" alt="" onerror="this.remove()">
+    <div class="hero-flash" id="heroFlash"></div>
+  </div>
+  <div class="wrap hero-in" id="heroIn">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div class="label mono rv"><b>●</b> Malang · Custom lighting bus & truck</div>
+        <h1 data-split id="heroTitle">Bikin armadamu<br><em>nyala</em> beda.</h1>
+        <div class="rv">
+          <p class="hero-p">Bengkel lampu custom untuk bus dan truck. Pasang videotron, rotator, tail lamp, RGB kabin, biled, sampai lampu kolong. Bisa dipasang di Malang atau kami kirim ke kotamu.</p>
+          <div class="hero-actions">
+            <a href="#studio" class="btn mag">Coba kustom dulu <span class="arrow">→</span></a>
+            <a href="https://wa.me/62895636053643?text=Halo%20Lingga%20Auto%20Lamp,%20mau%20tanya%20soal%20lampu%20custom" target="_blank" class="tlink">Langsung chat</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual rv" id="heroVisual">
+        <div class="trails" id="trails"></div>
+        <button class="seal" id="seal" aria-label="Nyalakan logo">
+          <svg viewBox="0 0 200 200" aria-hidden="true"><defs><path id="circ" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs>
+            <text><textPath href="#circ" textLength="496" lengthAdjust="spacing">LINGGA AUTO LAMP · CUSTOM LIGHTING · MALANG · </textPath></text></svg>
+          <span class="ring"></span>
+          <span class="seal-logo"><img src="logo.jpeg" alt="Lingga Auto Lamp" onerror="this.outerHTML='<b>L</b>'"></span>
+        </button>
+        <span class="tap-hint mono" id="tapHint">Tap logonya</span>
+      </div>
+    </div>
+    <div class="hero-foot mono rv">
+      <span>Malang, Jawa Timur</span>
+      <span class="hide-m">Kirim ke seluruh Indonesia</span>
+      <span class="scroll-cue"><i></i>Scroll</span>
+    </div>
+  </div>
+</header>
+
+<div class="marq" aria-hidden="true"><div class="marq-track">
+  <span>Videotron</span><span>Rotator</span><span>Tail Lamp</span><span>RGB Interior</span><span>Biled</span><span>Lampu Kolong</span>
+  <span>Videotron</span><span>Rotator</span><span>Tail Lamp</span><span>RGB Interior</span><span>Biled</span><span>Lampu Kolong</span>
+</div></div>
+
+<!-- STATEMENT -->
+<section class="statement">
+  <div class="wrap">
+    <div class="label mono" style="margin-bottom:28px"><b>00</b> Kenapa custom</div>
+    <p id="scrollWords">Lampu bawaan pabrik itu cukup buat jalan. Tapi kalau kamu mau armadamu dikenali orang dari jauh, dari belakang, sampai dari dalam kabin, <em>itu urusan kami.</em></p>
+  </div>
+</section>
+
+<!-- LAYANAN -->
+<section class="sec" id="layanan" style="padding-top:40px">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="label mono rv"><b>01</b> Layanan</div><h2 data-split>Yang bisa kami<br><em>kerjakan.</em></h2></div>
+      <p class="rv">Tap salah satu buat lihat detailnya: cocoknya buat armada apa, apa saja yang bisa diatur, dan catatan kecil dari kami.</p>
+    </div>
+    <div class="xp rv">
+      <div class="xp-list" id="xpList"></div>
+      <div class="xp-panel" id="xpPanel">
+        <div class="xp-vis" id="xpVis"></div>
+        <div class="xp-body" id="xpBody"></div>
+      </div>
+    </div>
+    <div class="swipe-hint mono">← geser gambar untuk ganti layanan →</div>
+  </div>
+</section>
+
+<!-- STUDIO -->
+<section class="sec" id="studio" style="padding-top:40px">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="label mono rv"><b>02</b> Studio Cahaya</div><h2 data-split>Kustom dulu,<br>baru <em>tanya harga.</em></h2></div>
+      <p class="rv">Pilih kendaraan, lampu, warna, dan tulisan videotron. Hasilnya langsung bisa kamu bandingin sama lampu bawaan di bawahnya.</p>
+    </div>
+    <div class="lab rv">
+      <div class="stage" id="stage">
+        <div class="stage-tag mono"><b id="lblColor">Merah</b> · <b id="lblMode">Static</b></div>
+        <div class="veh"><div class="seg two" id="veh"><button class="active" data-v="Bus">Bus</button><button data-v="Truck">Truck</button></div></div>
+        <div class="road"></div>
+        <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMax meet" id="stageSvg"></svg>
+      </div>
+      <div class="ctrl" id="ctrl">
+        <div class="lbl mono">Mulai dari contoh</div>
+        <div class="presets" id="presets">
+          <button class="preset" data-k="po"><b>Identitas PO</b><span>Videotron + tail lamp</span></button>
+          <button class="preset" data-k="malam"><b>Malam Panjang</b><span>Kolong + biled</span></button>
+          <button class="preset" data-k="kabin"><b>Kabin Nyaman</b><span>RGB kabin</span></button>
+          <button class="preset" data-k="kerja"><b>Truck Kerja</b><span>Rotator amber</span></button>
+        </div>
+        <div class="lbl mono">Lampu yang dipasang</div>
+        <div class="chips" id="parts">
+          <button class="chip" data-p="vt">Videotron</button>
+          <button class="chip" data-p="kol">Kolong</button>
+          <button class="chip" data-p="rot">Rotator</button>
+          <button class="chip" data-p="strip">Strip bodi</button>
+          <button class="chip" data-p="tail">Tail lamp</button>
+          <button class="chip" data-p="rgb">RGB kabin</button>
+          <button class="chip" data-p="bl">Biled</button>
+        </div>
+        <div class="lbl mono">Warna</div>
+        <div class="swatches" id="sw"></div>
+        <div class="lbl mono">Mode nyala</div>
+        <div class="seg" id="modes">
+          <button class="active" data-m="Static">Static</button>
+          <button data-m="Breathing">Breath</button>
+          <button data-m="Strobo">Strobo</button>
+          <button data-m="Rainbow">Rainbow</button>
+        </div>
+        <div class="lbl mono">Tulisan videotron</div>
+        <input class="field" id="vtInput" maxlength="24" value="LINGGA AUTO LAMP" autocomplete="off">
+        <div class="lbl mono">Kecerahan</div>
+        <input type="range" id="bright" min="30" max="100" value="100" aria-label="Kecerahan">
+        <div class="go"><a href="#banding" class="btn">Lihat bedanya <span class="arrow">↓</span></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE -->
+<section class="sec" id="banding" style="padding-top:20px">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="label mono rv"><b>03</b> Sebelum · Sesudah</div><h2 data-split>Ini bedanya sama<br><em>bawaan pabrik.</em></h2></div>
+      <p class="rv">Geser garisnya. Sisi kanan ikut pilihanmu di Studio Cahaya, jadi tiap kamu ubah di atas, di sini ikut berubah.</p>
+    </div>
+    <div class="ba rv" id="ba" style="--p:50%">
+      <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" id="baStock"></svg>
+      <svg viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet" class="after" id="baCustom"></svg>
+      <div class="handle" id="baHandle" role="slider" tabindex="0" aria-label="Bandingkan sebelum dan sesudah" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+      <span class="tagL mono">Bawaan</span><span class="tagR mono">Kustommu</span>
+    </div>
+    <div class="recap rv">
+      <p id="recap"></p>
+      <div class="acts"><a href="#studio" class="tlink">Ubah lagi</a><a id="sendLab" target="_blank" class="btn wa">Kirim konsep ini <span class="arrow">→</span></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- KARYA -->
+<section class="sec" id="karya" style="padding-top:40px">
+  <div class="wrap">
+    <div class="head">
+      <div><div class="label mono rv"><b>04</b> Karya</div><h2 data-split>Hasil kerjaan<br><em>kami.</em></h2></div>
+      <p class="rv">Sebagian kecil saja. Dokumentasi lengkap dan video nyalanya ada di Instagram.</p>
+    </div>
+    <div class="gal">
+      <figure class="tile t1 rv"><div class="art a1"><div class="vt"><span>LINGGA AUTO LAMP · MALANG</span></div></div><img class="photo" src="img/karya-1.jpg" alt="Videotron" loading="lazy" onerror="this.parentNode.classList.add('no-photo');this.remove()"><span class="ilu mono">Ilustrasi</span><figcaption><div><b>Videotron</b><span class="mono">Running text</span></div><span class="mono">01</span></figcaption></figure>
+      <figure class="tile t2 rv"><div class="art a2"></div><img class="photo" src="img/karya-2.jpg" alt="Rotator" loading="lazy" onerror="this.parentNode.classList.add('no-photo');this.remove()"><span class="ilu mono">Ilustrasi</span><figcaption><div><b>Rotator</b><span class="mono">Amber</span></div><span class="mono">02</span></figcaption></figure>
+      <figure class="tile t3 rv"><div class="art a3"></div><img class="photo" src="img/karya-3.jpg" alt="Tail lamp" loading="lazy" onerror="this.parentNode.classList.add('no-photo');this.remove()"><span class="ilu mono">Ilustrasi</span><figcaption><div><b>Tail Lamp</b><span class="mono">Custom</span></div><span class="mono">03</span></figcaption></figure>
+      <figure class="tile t4 rv"><div class="art a4"></div><img class="photo" src="img/karya-4.jpg" alt="RGB interior" loading="lazy" onerror="this.parentNode.classList.add('no-photo');this.remove()"><span class="ilu mono">Ilustrasi</span><figcaption><div><b>RGB Kabin</b><span class="mono">Ambient</span></div><span class="mono">04</span></figcaption></figure>
+      <figure class="tile t5 rv"><div class="art a5"></div><img class="photo" src="img/karya-5.jpg" alt="Lampu kolong" loading="lazy" onerror="this.parentNode.classList.add('no-photo');this.remove()"><span class="ilu mono">Ilustrasi</span><figcaption><div><b>Lampu Kolong</b><span class="mono">Underglow</span></div><span class="mono">05</span></figcaption></figure>
+    </div>
+    <div class="gal-foot rv">
+      <span class="mono">Geser untuk lihat lainnya</span>
+      <a href="https://instagram.com/linggaautolamp" target="_blank" class="tlink">Lihat semua di @linggaautolamp →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ORDER -->
+<section class="sec" id="order" style="padding-top:40px">
+  <div class="wrap order">
+    <div class="phone rv" id="phone">
+      <div class="phone-in">
+        <div class="ph-top"><div class="av"><img src="logo.jpeg" alt="" onerror="this.outerHTML='L'"></div><div><b>Lingga Auto Lamp</b><small>online</small></div></div>
+        <div class="chat">
+          <div class="day"><span>Hari ini</span></div>
+          <div class="bub me">Halo kak, bus saya mau dipasang videotron sama lampu kolong, bisa?<time>10.12</time></div>
+          <div class="bub them">Bisa kak 🙌 Busnya jenis apa, tulisannya mau apa?<time>10.13</time></div>
+          <div class="bub me">Big bus kak, tulisannya nama PO. Kolongnya biru ya<time>10.15</time></div>
+          <div class="bub them">Siap kak, kami kirim contoh dan harganya ya 👍<time>10.16</time></div>
+          <div class="typing" id="typing"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="label mono rv"><b>05</b> Cara order</div>
+      <h2 data-split>Ordernya<br><em>cukup chat.</em></h2>
+      <div class="steps rv">
+        <div class="step"><span class="n">i.</span><div><b>Kirim foto & ceritain maunya</b><span>Jenis kendaraan, lampu yang diincar, warna atau tulisan.</span></div></div>
+        <div class="step"><span class="n">ii.</span><div><b>Kami kasih saran & harga</b><span>Kalau budget terbatas, kami bantu pilih yang paling ngefek.</span></div></div>
+        <div class="step"><span class="n">iii.</span><div><b>Pasang atau kirim</b><span>Datang ke workshop di Malang, atau barangnya kami kirim.</span></div></div>
+        <div class="step"><span class="n">iv.</span><div><b>Beres, tinggal jalan</b><span>Kalau ada kendala setelah pasang, kabari kami.</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq" style="padding-top:40px">
+  <div class="wrap faq">
+    <div class="side">
+      <div class="label mono rv"><b>06</b> FAQ</div>
+      <h2 data-split>Sering<br><em>ditanya.</em></h2>
+      <p class="rv">Belum ketemu jawabannya? Tanya langsung saja, kami balas lewat WhatsApp.</p>
+    </div>
+    <div class="rv">
+      <details><summary>Workshopnya di mana?</summary><p>Di Malang, Jawa Timur. Alamat lengkap dan jadwal pasang kami kirim lewat WhatsApp ya.</p></details>
+      <details><summary>Bisa kirim ke luar kota?</summary><p>Bisa, ke seluruh Indonesia. Kalau mau dipasang di luar Malang, chat dulu, nanti kita cari cara yang paling enak.</p></details>
+      <details><summary>Selain bus dan truck bisa?</summary><p>Fokus kami bus dan truck. Kendaraan lain boleh ditanyakan dulu.</p></details>
+      <details><summary>Harganya berapa?</summary><p>Tergantung lampu apa, ukuran armada, dan seberapa custom. Kirim foto kendaraan plus maunya, nanti kami hitungkan.</p></details>
+      <details><summary>Berapa lama pengerjaannya?</summary><p>Tergantung jumlah lampu dan antrean. Perkiraan waktunya kami kasih bareng penawaran.</p></details>
+      <details><summary>Bus dan truck kan 24V, aman?</summary><p>Umumnya bus dan truck memang pakai sistem 24V, beda dengan mobil pribadi. Komponen dan jalur kabelnya disesuaikan, pakai sekring dan relay sendiri biar nggak ganggu kelistrikan lain.</p></details>
+      <details><summary>Lampu custom boleh dipakai di jalan?</summary><p>Fungsi lampu utama, rem, dan sein tetap nomor satu. Untuk lampu isyarat seperti rotator, warnanya diatur UU No. 22 Tahun 2009 sesuai jenis kendaraan, jadi konsultasikan dulu sebelum pilih warna.</p></details>
+      <details><summary>Biar lampunya awet gimana?</summary><p>Cek konektor dan kabel sesekali, jangan semprot air bertekanan langsung ke lampu, dan kabari kami kalau mulai kedip atau redup.</p></details>
+      <details><summary>Ada garansi?</summary><p>Ketentuannya beda tiap produk. Tanyakan waktu konsultasi biar jelas dari awal.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing" id="rakit">
+  <div class="closing-bg"><img src="img/penutup.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+  <div class="wrap">
+    <div class="closing-head">
+      <div class="label mono rv" style="justify-content:center"><b>07</b> Mulai</div>
+      <h2 data-split style="margin-top:20px">Yuk, <em>nyalain.</em></h2>
+      <p class="rv">Isi sebentar, pesan WhatsApp-nya jadi sendiri. Tinggal kirim.</p>
+    </div>
+    <div class="builder rv">
+      <div class="form">
+        <div class="lbl mono">Kendaraan</div>
+        <div class="seg three" id="bVeh"><button class="active" data-v="Bus">Bus</button><button data-v="Truck">Truck</button><button data-v="Lainnya">Lainnya</button></div>
+        <div class="lbl mono">Lampu yang diincar</div>
+        <div class="chips" id="bSvc">
+          <button class="chip" data-s="Videotron">Videotron</button><button class="chip" data-s="Rotator">Rotator</button><button class="chip" data-s="Tail Lamp">Tail Lamp</button>
+          <button class="chip" data-s="RGB Interior">RGB Interior</button><button class="chip" data-s="Biled">Biled</button><button class="chip" data-s="Lampu Kolong">Lampu Kolong</button>
+        </div>
+        <div class="lbl mono">Kota</div>
+        <input class="field" id="bCity" placeholder="mis. Surabaya" autocomplete="address-level2">
+        <div class="lbl mono">Catatan (opsional)</div>
+        <textarea class="field" id="bNote" placeholder="Warna, tulisan, tipe armada..."></textarea>
+      </div>
+      <div class="preview">
+        <span class="mono" style="color:#8696a0">Preview pesan</span>
+        <div class="msg" id="bMsg"></div>
+        <a class="btn wa" id="bSend" target="_blank">Kirim via WhatsApp <span class="arrow">→</span></a>
+      </div>
+    </div>
+    <div class="contact rv">
+      <div><span class="mono">Lokasi</span><span>Malang, Jawa Timur</span></div>
+      <div><span class="mono">WhatsApp</span><a href="https://wa.me/62895636053643" target="_blank">+62 895 6360 53643</a></div>
+      <div><span class="mono">Instagram</span><a href="https://instagram.com/linggaautolamp" target="_blank">@linggaautolamp</a></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap foot mono"><span>© <span id="yr"></span> Lingga Auto Lamp</span><span>Malang · Custom lighting</span></div></footer>
+
+<a href="https://wa.me/62895636053643" target="_blank" class="float-wa" id="floatWa" aria-label="Chat WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.6 2.1 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.7-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+</a>
+
+<script>
+const WA = 'https://wa.me/62895636053643?text=';
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const buzz = () => { try { navigator.vibrate && navigator.vibrate(8); } catch (e) {} };
+const fine = matchMedia('(pointer:fine)').matches;
+$('#yr').textContent = new Date().getFullYear();
+
+/* ---------- split headings into words ---------- */
+function split(el, cls) {
+  let i = 0;
+  (function walk(node) {
+    [...node.childNodes].forEach(n => {
+      if (n.nodeType === 3) {
+        const f = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(p => {
+          if (!p) return;
+          if (/^\s+$/.test(p)) { f.append(' '); return; }
+          const o = document.createElement('span');
+          if (cls) { o.className = cls; o.textContent = p; }
+          else { o.className = 'w'; const s = document.createElement('span'); s.textContent = p; s.style.setProperty('--i', i); o.append(s); }
+          i++; f.append(o);
+        });
+        n.replaceWith(f);
+      } else if (n.nodeType === 1 && n.tagName !== 'BR') {
+        if (n.tagName === 'EM') n.style.setProperty('--d', i * 55);
+        walk(n);
+      }
+    });
+  })(el);
+}
+$$('[data-split]').forEach(el => split(el));
+
+/* ---------- reveal ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add('in'); io.unobserve(e.target);
+  if (e.target.id === 'phone') playChat();
+  if (e.target.id === 'ba') sweep();
+}), { threshold: .15, rootMargin: '0px 0px -5% 0px' });
+$$('.rv,[data-split]').forEach(el => io.observe(el));
+requestAnimationFrame(() => $$('#hero [data-split], #hero .rv').forEach(el => el.classList.add('in')));
+
+function playChat() {
+  const bubs = $$('#phone .bub');
+  bubs.forEach((b, i) => setTimeout(() => b.classList.add('show'), 400 + i * 950));
+  setTimeout(() => $('#typing').classList.add('show'), 400 + bubs.length * 950);
+}
+
+/* ---------- nav / scroll effects ---------- */
+const nav = $('#nav'), heroImg = $('#heroImg'), heroIn = $('#heroIn'), floatWa = $('#floatWa');
+const sWords = $('#scrollWords'); split(sWords, 'sw'); const sw = $$('.sw', sWords);
+function onScroll() {
+  const y = scrollY, h = innerHeight;
+  nav.classList.toggle('scrolled', y > 30);
+  floatWa.classList.toggle('show', y > h * .8);
+  if (y < h * 1.2) {
+    if (heroImg && heroImg.isConnected) heroImg.style.transform = `translateY(${y * .25}px) scale(${1 + y / h * .08})`;
+    heroIn.style.opacity = Math.max(0, 1 - y / (h * .75));
+    heroIn.style.transform = `translateY(${y * -.12}px)`;
+  }
+  const r = sWords.getBoundingClientRect();
+  const p = Math.min(1, Math.max(0, (h * .85 - r.top) / (r.height + h * .35)));
+  const n = Math.round(p * sw.length);
+  sw.forEach((w, i) => w.classList.toggle('on', i < n));
+}
+addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+const menu = $('#menu'), burger = $('#burger');
+function setMenu(open) { menu.classList.toggle('open', open); burger.classList.toggle('x', open); nav.classList.toggle('menu-open', open); document.body.style.overflow = open ? 'hidden' : ''; }
+burger.onclick = () => setMenu(!menu.classList.contains('open'));
+const spyMap = { layanan:'layanan', studio:'studio', banding:'studio', karya:'karya', order:'order', faq:'faq' };
+const spy = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  const id = spyMap[e.target.id];
+  $$('a[href^="#"]', menu).forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+}), { rootMargin: '-45% 0px -50% 0px' });
+Object.keys(spyMap).forEach(id => spy.observe(document.getElementById(id)));
+['hero','rakit'].forEach(id => new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) $$('a', menu).forEach(a => a.classList.remove('active')); }), { rootMargin: '-45% 0px -50% 0px' }).observe(document.getElementById(id)));
+$$('a', menu).forEach(a => a.onclick = () => setMenu(false));
+
+/* light trails in hero */
+const tr = $('#trails');
+for (let k = 0; k < 16; k++) {
+  const s = document.createElement('span');
+  s.className = k % 2 ? 'h' : 'r';
+  s.style.top = (6 + Math.random() * 88) + '%';
+  s.style.width = (16 + Math.random() * 22) + '%';
+  s.style.opacity = (.3 + Math.random() * .6).toFixed(2);
+  s.style.setProperty('--d', (2.2 + Math.random() * 3.5).toFixed(2) + 's');
+  s.style.setProperty('--dl', (-Math.random() * 6).toFixed(2) + 's');
+  tr.append(s);
+}
+
+/* tap the logo: it "turns on" */
+const seal = $('#seal'), heroTitle = $('#heroTitle'), heroFlash = $('#heroFlash'), heroVisual = $('#heroVisual');
+let tilted = false;
+seal.addEventListener('click', () => {
+  try { navigator.vibrate && navigator.vibrate([12, 40, 18]); } catch (e) {}
+  $('#tapHint').classList.add('gone');
+  [seal, heroFlash].forEach(el => { el.classList.remove('flash', 'on'); void el.offsetWidth; });
+  seal.classList.add('flash'); heroFlash.classList.add('on'); tr.classList.add('boost');
+  const r = seal.getBoundingClientRect(), hr = $('#hero').getBoundingClientRect();
+  heroFlash.style.setProperty('--fx', (r.left + r.width / 2 - hr.left) + 'px');
+  heroFlash.style.setProperty('--fy', (r.top + r.height / 2 - hr.top) + 'px');
+  const em = $('em', heroTitle); em.style.animation = 'none'; void em.offsetWidth; em.style.animation = 'flick 1.6s both';
+  setTimeout(() => { seal.classList.remove('flash'); tr.classList.remove('boost'); }, 2600);
+  // ask once for motion access on iPhone so tilting moves the logo
+  if (!tilted && window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === 'function') {
+    DeviceOrientationEvent.requestPermission().then(s => { if (s === 'granted') listenTilt(); }).catch(() => {});
+  }
+});
+
+/* tilt the phone (or move the mouse) to shift the logo */
+function listenTilt() {
+  if (tilted) return; tilted = true;
+  addEventListener('deviceorientation', e => {
+    if (e.gamma == null) return;
+    const x = Math.max(-1, Math.min(1, e.gamma / 30)), y = Math.max(-1, Math.min(1, (e.beta - 45) / 30));
+    heroVisual.style.setProperty('--tx', (x * 18).toFixed(1) + 'px');
+    heroVisual.style.setProperty('--ty', (y * 12).toFixed(1) + 'px');
+  }, { passive: true });
+}
+if (!fine && window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission !== 'function') listenTilt();
+if (fine) $('#hero').addEventListener('pointermove', e => {
+  heroVisual.style.setProperty('--tx', ((e.clientX / innerWidth - .5) * 30).toFixed(1) + 'px');
+  heroVisual.style.setProperty('--ty', ((e.clientY / innerHeight - .5) * 20).toFixed(1) + 'px');
+});
+
+/* ripple on every tap */
+document.addEventListener('pointerdown', e => {
+  const el = e.target.closest('.btn,.chip,.preset,.seg button');
+  if (!el) return;
+  const r = el.getBoundingClientRect(), d = Math.max(r.width, r.height) * 2.2, s = document.createElement('span');
+  s.className = 'rip'; s.style.width = s.style.height = d + 'px';
+  s.style.left = (e.clientX - r.left - d / 2) + 'px'; s.style.top = (e.clientY - r.top - d / 2) + 'px';
+  el.append(s); setTimeout(() => s.remove(), 650);
+}, { passive: true });
+
+/* magnetic buttons (desktop) */
+if (fine) $$('.mag,.btn').forEach(b => {
+  b.addEventListener('pointermove', e => { const r = b.getBoundingClientRect(); b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .2}px,${(e.clientY - r.top - r.height / 2) * .3}px)`; });
+  b.addEventListener('pointerleave', () => b.style.transform = '');
+});
+
+/* ---------- services explorer ---------- */
+const SVC = [
+  { k:'Videotron', slug:'videotron', c:'#ff4d4d', art:'<div class="art a1"><div class="vt"><span>NAMA PO · TRAYEK · KALIMAT ANDALAN</span></div></div>',
+    lead:'Running text LED di kaca. Biasanya diisi nama PO, trayek, atau kalimat andalan armada.',
+    cocok:'Bus AKAP, pariwisata, truck yang punya julukan', atur:'Tulisan, warna, kecepatan jalan teks', note:'Tulisan pendek lebih enak dibaca dari jauh.' },
+  { k:'Rotator', slug:'rotator', c:'#ff9a1f', art:'<div class="art a2"></div>',
+    lead:'Lampu putar atau kedip di atap. Kelihatan dari jauh, siang maupun malam.',
+    cocok:'Truck operasional, derek, angkutan barang khusus', atur:'Warna, pola kedip, posisi pasang', note:'Warna lampu isyarat ada aturannya (UU 22/2009). Tanya dulu biar nggak salah pilih.' },
+  { k:'Tail Lamp', slug:'tail-lamp', c:'#e5262f', art:'<div class="art a3"></div>',
+    lead:'Lampu belakang yang dibentuk ulang, termasuk sein jalan (sequential).',
+    cocok:'Armada yang pengin tampilan belakangnya beda', atur:'Bentuk, susunan LED, pola sein', note:'Fungsi rem dan sein tetap nomor satu, desain menyesuaikan.' },
+  { k:'RGB Interior', slug:'rgb-interior', c:'#b06bff', art:'<div class="art a4"></div>',
+    lead:'Lampu ambient kabin. Warnanya bisa diganti sesuai suasana perjalanan.',
+    cocok:'Bus pariwisata, sleeper, shuttle', atur:'Warna dan mode nyala', note:'Siapkan satu mode redup buat perjalanan malam, penumpang lebih enak tidur.' },
+  { k:'Biled', slug:'biled', c:'#dfeeff', art:'<div class="art a6"></div>',
+    lead:'Ganti lampu utama ke projector Bi-LED. Lebih terang, sorotnya fokus, batas cahayanya rapi.',
+    cocok:'Lampu utama yang sudah redup atau sorotnya nyebar', atur:'Tipe projector, warna cahaya', note:'Arah sorot harus disetel pas biar nggak nyilauin kendaraan dari depan.' },
+  { k:'Lampu Kolong', slug:'lampu-kolong', c:'#3fe0ff', art:'<div class="art a5"></div>',
+    lead:'Lampu di bawah bodi. Paling kerasa waktu parkir malam atau ikut acara.',
+    cocok:'Bus pariwisata, truck modifikasi', atur:'Warna, mode, area pasang', note:'Pakai saat parkir atau acara, jangan sampai ganggu pengguna jalan lain.' }
+];
+const xpList = $('#xpList'), xpVis = $('#xpVis'), xpBody = $('#xpBody'), xpPanel = $('#xpPanel');
+SVC.forEach((s, i) => {
+  const b = document.createElement('button');
+  b.className = 'xp-item'; b.style.setProperty('--c', s.c);
+  b.innerHTML = `<span class="n">0${i + 1}</span><h3>${s.k}</h3><span class="dot"></span>`;
+  b.onclick = () => { showSvc(i); buzz(); };
+  if (fine) b.onmouseenter = () => showSvc(i);
+  xpList.append(b);
+});
+let cur = -1;
+function showSvc(i) {
+  i = (i + SVC.length) % SVC.length;
+  if (i === cur) return; cur = i;
+  const s = SVC[i];
+  $$('.xp-item', xpList).forEach((b, j) => b.classList.toggle('active', j === i));
+  const act = $$('.xp-item', xpList)[i];
+  if (!fine && xpList.scrollWidth > xpList.clientWidth) xpList.scrollTo({ left: act.offsetLeft - 20, behavior: 'smooth' });
+  xpPanel.style.setProperty('--c', s.c);
+  xpVis.innerHTML = s.art + `<img class="photo" src="img/layanan-${s.slug}.jpg" alt="${s.k}" onerror="this.remove()"><span class="count">0${i + 1} / 06</span><div class="tag"><small>Layanan</small>${s.k}</div>`;
+  const msg = encodeURIComponent(`Halo Lingga Auto Lamp, mau tanya soal ${s.k}. Boleh minta info dan harganya?`);
+  xpBody.innerHTML = `<div class="fade"><p class="lead">${s.lead}</p>
+    <div class="xp-rows"><div><small>Cocok untuk</small><span>${s.cocok}</span></div><div><small>Bisa diatur</small><span>${s.atur}</span></div><div><small>Catatan</small><span>${s.note}</span></div></div>
+    <div class="xp-cta"><a class="btn" target="_blank" href="${WA}${msg}">Tanya ${s.k} <span class="arrow">→</span></a><a href="#studio" class="tlink">Coba di Studio</a></div></div>`;
+}
+showSvc(0);
+let tx = null;
+xpVis.addEventListener('touchstart', e => tx = e.touches[0].clientX, { passive: true });
+xpVis.addEventListener('touchend', e => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 45) { showSvc(cur + (dx < 0 ? 1 : -1)); buzz(); } tx = null; });
+
+/* ---------- vehicle drawings ---------- */
+function vehicle(lit, bg) {
+  const L = s => lit ? s : '';
+  const back = bg ? `<rect width="800" height="400" fill="#07070a"/>${L('<rect width="800" height="400" fill="url(#amb)"/>')}<rect y="350" width="800" height="50" fill="#0a0a0c"/><line x1="0" y1="376" x2="800" y2="376" stroke="rgba(255,255,255,.08)" stroke-width="2" stroke-dasharray="50 45"/>` : '';
+  const vtB = L(`<text class="lit vtt vb" data-part="vt" x="400" y="185" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="600" font-size="22" letter-spacing="4" filter="url(#gl)" clip-path="url(#clipB)">LINGGA AUTO LAMP</text><rect x="170" y="160" width="460" height="36" fill="url(#ledgrid)" data-part="vt"/>`);
+  const vtT = L(`<text class="lit vtt vt2" data-part="vt" x="310" y="178" text-anchor="middle" font-family="JetBrains Mono, monospace" font-weight="600" font-size="22" letter-spacing="4" filter="url(#gl)" clip-path="url(#clipT)">LINGGA AUTO LAMP</text><rect x="150" y="150" width="320" height="40" fill="url(#ledgrid)" data-part="vt"/>`);
+  const head = (x, y, w, h, beam) => lit
+    ? `<g data-part="bl"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="5" fill="#f6faff" filter="url(#gl)"/><polygon points="${beam}" fill="url(#hb)"/></g>`
+    : `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="5" fill="#c9a557" opacity=".5"/><polygon points="${beam}" fill="#c9a557" opacity=".04"/>`;
+  return back + `
+  <g class="g-bus">
+    ${L('<ellipse data-part="kol" cx="400" cy="345" rx="310" ry="24" fill="url(#ug)"/>')}
+    <rect x="110" y="120" width="580" height="200" rx="28" fill="url(#body)" stroke="rgba(255,255,255,.1)"/>
+    <rect x="130" y="140" width="540" height="78" rx="10" fill="url(#glass)" stroke="rgba(255,255,255,.06)"/>
+    ${L('<rect x="130" y="140" width="540" height="78" rx="10" class="litFill" data-part="rgb"/>')}
+    <rect x="170" y="160" width="460" height="36" rx="5" fill="#040405"/>
+    ${vtB}
+    ${L('<rect x="110" y="238" width="580" height="4" class="litFill" data-part="strip" filter="url(#gl)"/>')}
+    <rect x="600" y="232" width="60" height="78" rx="5" fill="#101012" stroke="rgba(255,255,255,.06)"/>
+    ${head(672, 262, 18, 26, '690,268 800,232 800,322 690,284')}
+    ${lit ? '<rect x="110" y="252" width="12" height="40" rx="4" class="litFill" data-part="tail" filter="url(#gl)"/>' : '<rect x="110" y="252" width="12" height="40" rx="4" fill="#4a1216"/>'}
+    <rect x="382" y="106" width="36" height="14" rx="5" fill="#1d1d20"/>
+    ${L('<circle class="litFill rot" data-part="rot" cx="400" cy="101" r="10" filter="url(#gl)"/>')}
+    <circle cx="220" cy="320" r="33" fill="#080809" stroke="#2a2a2d" stroke-width="3"/><circle cx="220" cy="320" r="12" fill="#3b3b40"/>
+    <circle cx="580" cy="320" r="33" fill="#080809" stroke="#2a2a2d" stroke-width="3"/><circle cx="580" cy="320" r="12" fill="#3b3b40"/>
+  </g>
+  <g class="g-truck" style="display:none">
+    ${L('<ellipse data-part="kol" cx="400" cy="345" rx="310" ry="24" fill="url(#ug)"/>')}
+    <rect x="110" y="100" width="400" height="200" rx="8" fill="url(#body)" stroke="rgba(255,255,255,.1)"/>
+    <rect x="150" y="150" width="320" height="40" rx="5" fill="#040405"/>
+    ${vtT}
+    <path d="M525 150 h105 q25 0 38 22 l22 40 v88 h-165 z" fill="url(#body)" stroke="rgba(255,255,255,.1)"/>
+    <path d="M600 162 h30 q14 0 22 14 l16 30 h-68 z" fill="url(#glass)" stroke="rgba(255,255,255,.06)"/>
+    ${L('<path d="M600 162 h30 q14 0 22 14 l16 30 h-68 z" class="litFill" data-part="rgb"/>')}
+    <rect x="110" y="300" width="580" height="8" fill="#141416"/>
+    ${L('<rect x="110" y="292" width="580" height="4" class="litFill" data-part="strip" filter="url(#gl)"/>')}
+    ${lit ? '<rect x="110" y="250" width="10" height="34" rx="3" class="litFill" data-part="tail" filter="url(#gl)"/>' : '<rect x="110" y="250" width="10" height="34" rx="3" fill="#4a1216"/>'}
+    <rect x="590" y="140" width="40" height="10" rx="4" fill="#1d1d20"/>
+    ${L('<circle class="litFill rot" data-part="rot" cx="610" cy="134" r="10" filter="url(#gl)"/>')}
+    ${head(676, 250, 14, 24, '690,256 800,222 800,312 690,272')}
+    <circle cx="190" cy="320" r="30" fill="#080809" stroke="#2a2a2d" stroke-width="3"/><circle cx="190" cy="320" r="11" fill="#3b3b40"/>
+    <circle cx="260" cy="320" r="30" fill="#080809" stroke="#2a2a2d" stroke-width="3"/><circle cx="260" cy="320" r="11" fill="#3b3b40"/>
+    <circle cx="610" cy="320" r="30" fill="#080809" stroke="#2a2a2d" stroke-width="3"/><circle cx="610" cy="320" r="11" fill="#3b3b40"/>
+  </g>`;
+}
+$('#stageSvg').innerHTML = vehicle(true, false);
+$('#baCustom').innerHTML = vehicle(true, true);
+$('#baStock').innerHTML = vehicle(false, true);
+
+/* ---------- studio state ---------- */
+const COLORS = [['#e5262f','Merah'],['#ff9a1f','Amber'],['#ffe36a','Kuning'],['#4dffa0','Hijau'],['#3fe0ff','Ice Blue'],['#9a5cff','Ungu'],['#ff5cd6','Pink'],['#f4f4f0','Putih']];
+const PN = { vt:'Videotron', kol:'Kolong', rot:'Rotator', strip:'Strip bodi', tail:'Tail lamp', rgb:'RGB kabin', bl:'Biled' };
+const S = { color:'#e5262f', name:'Merah', mode:'Static', bright:100, text:'LINGGA AUTO LAMP', veh:'Bus', parts:new Set(['vt','kol','strip','tail','bl']) };
+const swWrap = $('#sw');
+COLORS.forEach(([c, n]) => { const b = document.createElement('button'); b.className = 'sw-c'; b.style.background = c; b.dataset.c = c; b.dataset.n = n; b.setAttribute('aria-label', n); swWrap.append(b); });
+
+const lits = $$('.litFill,.lit'), stops = $$('.beamStop'), partEls = $$('[data-part]'), rots = $$('.rot'), vbs = $$('.vb'), vts = $$('.vt2');
+const rainbow = ['#ff3a6a','#ff9a1f','#ffe36a','#4dffa0','#3fe0ff','#9a5cff','#ff5cd6'];
+function paint(c) {
+  lits.forEach(el => el.setAttribute('fill', c));
+  stops.forEach(s => s.setAttribute('stop-color', c));
+  document.documentElement.style.setProperty('--beam', c);
+}
+function sync() {
+  $$('.sw-c').forEach(b => b.classList.toggle('active', b.dataset.c === S.color));
+  $$('#modes button').forEach(b => b.classList.toggle('active', b.dataset.m === S.mode));
+  $$('#parts .chip').forEach(c => c.classList.toggle('on', S.parts.has(c.dataset.p)));
+  $$('#veh button').forEach(b => b.classList.toggle('active', b.dataset.v === S.veh));
+  $$('.g-bus').forEach(g => g.style.display = S.veh === 'Bus' ? '' : 'none');
+  $$('.g-truck').forEach(g => g.style.display = S.veh === 'Truck' ? '' : 'none');
+  $('#lblColor').textContent = S.name; $('#lblMode').textContent = S.mode;
+  if (S.mode !== 'Rainbow') paint(S.color);
+  const parts = [...S.parts].map(p => PN[p]);
+  $('#recap').innerHTML = `Konsepmu: <b>${S.veh}</b> · <b>${S.name}</b> · <b>${S.mode}</b>${parts.length ? ' · ' + parts.join(', ') : ' · belum pilih lampu'}`;
+  const msg = `Halo Lingga Auto Lamp, saya sudah coba di Studio Cahaya:\n• Kendaraan: ${S.veh}\n• Lampu: ${parts.join(', ') || '-'}\n• Warna: ${S.name}\n• Mode: ${S.mode}${S.parts.has('vt') ? `\n• Tulisan videotron: ${S.text}` : ''}\nBoleh minta info dan harganya?`;
+  $('#sendLab').href = WA + encodeURIComponent(msg);
+}
+swWrap.onclick = e => { const b = e.target.closest('.sw-c'); if (!b) return; S.color = b.dataset.c; S.name = b.dataset.n; if (S.mode === 'Rainbow') S.mode = 'Static'; clearPreset(); sync(); buzz(); };
+$$('#modes button').forEach(b => b.onclick = () => { S.mode = b.dataset.m; clearPreset(); sync(); buzz(); });
+$$('#parts .chip').forEach(c => c.onclick = () => { const p = c.dataset.p; S.parts.has(p) ? S.parts.delete(p) : S.parts.add(p); clearPreset(); sync(); buzz(); });
+$$('#veh button').forEach(b => b.onclick = () => { S.veh = b.dataset.v; sync(); buzz(); });
+$('#vtInput').oninput = e => { S.text = e.target.value.trim().toUpperCase() || ' '; [...vbs, ...vts].forEach(v => v.textContent = S.text); sync(); };
+$('#bright').oninput = e => S.bright = +e.target.value;
+
+const PRESETS = {
+  po:    { veh:'Bus', parts:['vt','tail','strip','bl'], c:0, mode:'Static' },
+  malam: { veh:'Bus', parts:['kol','bl','vt','strip'], c:4, mode:'Breathing' },
+  kabin: { veh:'Bus', parts:['rgb','kol'], c:5, mode:'Breathing' },
+  kerja: { veh:'Truck', parts:['rot','tail','strip','bl'], c:1, mode:'Strobo' }
+};
+function clearPreset() { $$('.preset').forEach(p => p.classList.remove('active')); }
+$$('.preset').forEach(p => p.onclick = () => {
+  const P = PRESETS[p.dataset.k];
+  S.veh = P.veh; S.parts = new Set(P.parts); [S.color, S.name] = COLORS[P.c]; S.mode = P.mode;
+  clearPreset(); p.classList.add('active'); sync(); buzz();
+});
+
+/* animation loop, only while studio / compare visible */
+let t = 0; const vis = new Set();
+const vio = new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? vis.add(e.target) : vis.delete(e.target)));
+vio.observe($('#studio')); vio.observe($('#banding'));
+partEls.forEach(el => el.style.opacity = 0);
+(function loop() {
+  if (vis.size) {
+    t++;
+    let op = S.bright / 100;
+    if (S.mode === 'Breathing') op *= .3 + .7 * (Math.sin(t / 26) * .5 + .5);
+    if (S.mode === 'Strobo') op *= (Math.floor(t / 6) % 2) ? 1 : .06;
+    if (S.mode === 'Rainbow' && t % 18 === 0) paint(rainbow[(t / 18) % rainbow.length]);
+    partEls.forEach(el => {
+      const p = el.dataset.part, on = S.parts.has(p);
+      if (p === 'bl') { el.style.opacity = on ? 1 : .12; return; }
+      el.style.opacity = on ? op * (p === 'rgb' ? .24 : 1) : 0;
+    });
+    rots.forEach(r => r.setAttribute('r', 8 + Math.abs(Math.sin(t / 5)) * 4));
+    vbs.forEach(v => v.setAttribute('x', 860 - ((t * 1.6) % 920)));
+    vts.forEach(v => v.setAttribute('x', 640 - ((t * 1.4) % 660)));
+  }
+  requestAnimationFrame(loop);
+})();
+sync();
+
+/* ---------- before / after slider (touch friendly) ---------- */
+const ba = $('#ba'), handle = $('#baHandle');
+let pos = 50, touched = false, drag = false, sx = 0, sy = 0, decided = false;
+function setP(v) { pos = Math.max(0, Math.min(100, v)); ba.style.setProperty('--p', pos + '%'); handle.setAttribute('aria-valuenow', Math.round(pos)); }
+function fromEvent(e) { const r = ba.getBoundingClientRect(); setP((e.clientX - r.left) / r.width * 100); }
+ba.addEventListener('pointerdown', e => {
+  touched = true; sx = e.clientX; sy = e.clientY;
+  if (e.pointerType === 'mouse') { drag = true; decided = true; ba.setPointerCapture(e.pointerId); ba.classList.add('drag'); fromEvent(e); }
+  else { drag = true; decided = false; }
+});
+ba.addEventListener('pointermove', e => {
+  if (!drag) return;
+  if (!decided) {
+    const dx = Math.abs(e.clientX - sx), dy = Math.abs(e.clientY - sy);
+    if (dx < 6 && dy < 6) return;
+    if (dy > dx) { drag = false; return; }
+    decided = true; ba.classList.add('drag'); try { ba.setPointerCapture(e.pointerId); } catch (_) {}
+  }
+  fromEvent(e);
+});
+const end = e => { if (drag && !decided && e.type === 'pointerup') fromEvent(e); drag = false; ba.classList.remove('drag'); };
+ba.addEventListener('pointerup', end); ba.addEventListener('pointercancel', end);
+handle.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') setP(pos - 5); if (e.key === 'ArrowRight') setP(pos + 5); });
+function sweep() {
+  const keys = [50, 80, 22, 50], dur = 2600, t0 = performance.now();
+  (function step(now) {
+    if (touched) return;
+    const k = Math.min(1, (now - t0) / dur), seg = k * 3, i = Math.min(2, Math.floor(seg)), f = seg - i, e = f < .5 ? 2 * f * f : 1 - Math.pow(-2 * f + 2, 2) / 2;
+    setP(keys[i] + (keys[i + 1] - keys[i]) * e);
+    if (k < 1) requestAnimationFrame(step);
+  })(t0);
+}
+
+/* ---------- builder ---------- */
+const B = { veh:'Bus', svc:new Set() }, bMsg = $('#bMsg'), bSend = $('#bSend');
+function buildMsg() {
+  const city = $('#bCity').value.trim(), note = $('#bNote').value.trim();
+  let m = `Halo Lingga Auto Lamp 👋\nMau konsultasi lampu custom.\n\n• Kendaraan: ${B.veh}\n• Lampu: ${[...B.svc].join(', ') || 'masih bingung, minta saran'}`;
+  if (city) m += `\n• Kota: ${city}`;
+  if (note) m += `\n• Catatan: ${note}`;
+  m += `\n\nBoleh minta contoh dan harganya?`;
+  bMsg.textContent = m; bSend.href = WA + encodeURIComponent(m);
+}
+$$('#bVeh button').forEach(b => b.onclick = () => { B.veh = b.dataset.v; $$('#bVeh button').forEach(x => x.classList.toggle('active', x === b)); buildMsg(); buzz(); });
+$$('#bSvc .chip').forEach(c => c.onclick = () => { const s = c.dataset.s; B.svc.has(s) ? B.svc.delete(s) : B.svc.add(s); c.classList.toggle('on', B.svc.has(s)); buildMsg(); buzz(); });
+$('#bCity').oninput = buildMsg; $('#bNote').oninput = buildMsg;
+buildMsg();
+</script>
+</body>
+</html>
